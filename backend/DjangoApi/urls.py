@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import re_path as url
 
-from django.conf.urls import re_path,include
+from django.urls import re_path,include
 
 urlpatterns = [
-    re_path('admin/', admin.site.urls),
+    url('admin/', admin.site.urls),
     re_path(r'^',include('ProjectApp.urls')),
 ]

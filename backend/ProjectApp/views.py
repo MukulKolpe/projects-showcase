@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from django.db.models import OuterRef
+from django.db.models.functions import JSONObject
+from django.contrib.postgres.expressions import ArraySubquery
+
 
 from ProjectApp.models import Departments, Employees,Users,Projects
 from ProjectApp.serializers import DeparmentSerializer, EmployeeSerializer,ProjectSerializer,UserSerializer
@@ -60,7 +64,7 @@ def UserApi(request,id=0):
     return JsonResponse("Deleted Successfully",safe=False)
 
 @csrf_exempt
-def ProjectApi(request,id=0,domain=''):
+def ProjectApi(request,id=0):
   if request.method == 'GET':
     projects = Projects.objects.all()
     projects_serializer = ProjectSerializer(projects,many=True)
@@ -85,11 +89,55 @@ def ProjectApi(request,id=0,domain=''):
     project.delete()
     return JsonResponse("Deleted Successfully",safe=False)
 
+
+#getting project by Project Id
+@csrf_exempt
+def ProjectById(request,id=0):
+  if request.method == 'GET':
+    projects = Projects.objects.filter(ProjectId=id)
+    projects_serializer = ProjectSerializer(projects,many=True)
+    return JsonResponse(projects_serializer.data,safe=False)
+  return JsonResponse("No Projects Found",safe=False)
+
+
+#getting project by Project Department
+@csrf_exempt
+def ProjectDept(request,department=''):
+  if request.method == 'GET':
+    projects = Projects.objects.filter(ProjectDepartment=department)
+    projects_serializer = ProjectSerializer(projects,many=True)
+    return JsonResponse(projects_serializer.data,safe=False)
+  return JsonResponse("No Projects Found",safe=False)
+
+
 #getting project by Project Domain
 @csrf_exempt
 def ProjectDomain(request,domain=''):
   if request.method == 'GET':
-    projects = Projects.objects.get(ProjectDomain=domain)
+    projects = Projects.objects.filter(ProjectDomain=domain)
     projects_serializer = ProjectSerializer(projects,many=True)
     return JsonResponse(projects_serializer.data,safe=False)
   return JsonResponse("No Projects Found",safe=False)
+
+
+#getting project by Project Mentor
+@csrf_exempt
+def ProjectMentor(request,mentor=''):
+  if request.method == 'GET':
+    projects = Projects.objects.filter(ProjectMentor=mentor)
+    projects_serializer = ProjectSerializer(projects,many=True)
+    return JsonResponse(projects_serializer.data,safe=False)
+  return JsonResponse("No Projects Found",safe=False)
+
+#getting project by Project TechStack
+@csrf_exempt
+def ProjectTechStack(request,techstack=''):
+  if request.method == 'GET':
+    projects = Projects.objects.filter(ProjecTechStacks=techstack)
+    projects_serializer = ProjectSerializer(projects,many=True)
+    return JsonResponse(projects_serializer.data,safe=False)
+  return JsonResponse("No Projects Found",safe=False)
+
+
+
+

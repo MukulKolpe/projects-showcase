@@ -1,22 +1,36 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import CustomCard from "../Card";
+import DomainFilter from "./Filter/DomainFilter";
+import Filter from "./Filter/filter";
 import "./Home.css";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
+  const [query,setQuery] = useState('all')
   useEffect(() => {
     const fetchApi = async () => {
       const response = await fetch(
-        `http://localhost:8000/project/all`
+        `http://localhost:8000/project/${query}`
       );
       const resJson = await response.json();
       await setProjects(resJson);
       // console.log(resJson);
     };
     fetchApi();
-  }, []);
+  }, [query]);
+ 
   return (
+    <div>
+    <div  className="flex justify-center mt-4 p-10 ml-4">
+    <div className="mr-8"> 
+    <Filter  getquery={(q) => setQuery(`dept/${q}`) }  />
+    </div>
+    <div className="mr-8"> 
+    <DomainFilter getquery={(q) => setQuery(`domain/${q}`) } />
+    </div>
+    
+    </div>
     <div className="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 my-10 lg:ml-5 sm:mt-8" >
             {projects.map((project) => {
               return (
@@ -37,6 +51,7 @@ const Home = () => {
                 />
                               );
             })}
+            </div>
             </div>
   );
 };

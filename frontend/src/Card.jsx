@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const CustomCard = ({ProjectId,ProjectName,ProjectDepartment,ProjectDivision,ProjectDomain,ProjectDescription,ProjecTechStacks,ProjecDuration,ProjectMentor,ProjectCode,ProjectTeam,image}) => {
     const [modalShow, setModalShow] = useState(false);
+    console.log(ProjecTechStacks);
     return(
         <>
         <button  style={{border: 'none', backgroundColor : '#fff', padding: '0'}} onClick={() => setModalShow(true)}>
@@ -158,7 +159,9 @@ const CustomCard = ({ProjectId,ProjectName,ProjectDepartment,ProjectDivision,Pro
             left:'140px',
             top : '110px'
            }}
-           >Languages Used : {ProjecTechStacks}</Row>
+           >Languages Used : {ProjecTechStacks }</Row>
+
+
 
            </Col>
            </Row>

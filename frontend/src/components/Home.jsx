@@ -17,7 +17,7 @@ const Home = () => {
     fetchApi();
   }, []);
   return (
-    <section className="project">
+    <div className="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 my-10 lg:ml-5 sm:mt-8" >
             {projects.map((project) => {
               return (
                 <CustomCard
@@ -28,13 +28,16 @@ const Home = () => {
                   ProjecTechStacks={project.ProjecTechStacks}
                   ProjectDescription={project.ProjectDescription}
                   ProjectDepartment={project.ProjectDepartment}
+                  ProjectTeam={project.ProjectTeam}
+                  ProjectMentor={project.ProjectMentor}
+                  ProjectCode={project.ProjectCode}
                   image={
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMevHeRa4l5PKEAMwb8hYXZOJWQbEJKN01yA&usqp=CAU"
                   }
                 />
                               );
             })}
-    </section>
+            </div>
   );
 };
 

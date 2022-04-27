@@ -4,197 +4,87 @@ import { useState } from "react";
 
 
 const CustomCard = ({ProjectId,ProjectName,ProjectDepartment,ProjectDivision,ProjectDomain,ProjectDescription,ProjecTechStacks,ProjecDuration,ProjectMentor,ProjectCode,ProjectTeam,image}) => {
-    const [modalShow, setModalShow] = useState(false);
+    const [showModal,setShowModal] = useState(false);
     console.log(ProjecTechStacks);
     return(
+      <div>
+      <div class="bg-white rounded-lg border shadow-md max-w-xs md:max-w-none overflow-hidden">
+      <img class="h-56 lg:h-65 w-full object-cover" src={image} alt="" />
+      <div class="p-3">
+          <h1 class="font-bold leading-8 text-gray-700 my-5 text-3xl">
+          {ProjectName}
+          </h1>
+         
+          <p class="paragraph-normal text-gray-700">
+          {ProjectDescription}
+          </p>
+
+          <p class="paragraph-normal text-gray-600">
+          {ProjectDomain}
+          </p>
+      </div>
+      <button
+        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-4 ease-linear transition-all duration-150"
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
+        View More
+      </button>
+     
+  </div>
+
+  
+      {showModal ? (
         <>
-        <button  style={{border: 'none', backgroundColor : '#fff', padding: '0'}} onClick={() => setModalShow(true)}>
-        <Card className="rounded-top"
-          style={
-            { 
-              width: '18rem',
-              margin: '1rem 1rem 1rem 1rem'
-            }
-          }>
-  <Card.Img variant="top" src={image} 
-  style={{
-    height : '200px'
-  }}
-  />
-  <Card.Body
-    style ={{
-      height : '140px'
-    }}
-  >
-    <Card.Title
-      style={
-        {
-          position : 'relative',
-          textAlign: 'left',
-          marginTop : '10px',
-        }
-      }
-      >{ProjectName}</Card.Title>
-    <Card.Text 
-      style={
-        {
-          position : 'relative',
-          left : '5px',
-          textAlign: 'left',
-          color : 'rgb(60,60,60)'
-        }
-      }>
-      <h6>{ProjectDomain}</h6>
-
-    </Card.Text>
-
-    <Card.Text 
-      style={
-        {
-          position : 'relative',
-          width : '80px',
-          height : '20px',
-          textAlign : 'right',
-          backgroundColor: "#FF2400",
-          color : 'white',
-          fontWeight : '400',
-          left : '-16px'
-        }
-      }>
-      <h6>Hosted</h6>
-    </Card.Text>
-    <Card.Text 
-      style={
-        {
-          position : 'relative',
-          margin: '1rem 0 0 0',
-          textAlign : 'right',
-          width : '120px',
-          left : '130px',
-          top : '-10px'
-        }}>
-        <div>
-          <ul>
-            <li>
-              <h6>{ProjecTechStacks}</h6>
-            </li>
-          </ul>
-        </div>
-      
-    </Card.Text>
-
-    
-       
-  </Card.Body>
-
-</Card>
-</button>
-
-<Modal show= {modalShow} animation={false} >
-            <Modal.Body 
-              style= 
-              {
-                {
-                  height: '400px',
-                }
-              }>
-            <Container>
-            <Row>
-           <Col
-           style={{
-             height : '100px'
-           }}
-           >
-           <img style={{height: '200px',position:'relative',left :'140px',alignItems:'center'}}class="img-fluid" src= {image} alt=""></img> 
-           </Col>
-           <Col>
-           <Row
-            style={{
-              textAlign:'left',
-              left:'220px',
-              fontSize : '1.8rem',
-              position : 'relative',
-               top:'100px',
-              fontWeight : 'bold'
-            }}
-           >{ProjectName}</Row>
-           <Row
-            style={{
-              left:'140px',
-              position : 'relative',
-              fontSize : '1.4rem',
-              fontWeight : 'bold',
-              top:'105px',
-              color : 'rgb(133, 126, 126)'
-            }}
-           >{ProjectDomain}</Row>
-           <Row
-            style={{
-              fontWeight : 'bold',
-              left:'140px',
-              position : 'relative',
-              fontSize : '1.2rem',
-              top:'110px',
-            }}
-           >Department: {ProjectDepartment}</Row>
-           {/* <Row
-           style={{
-             position : 'relative',
-             top : '5px',
-             fontWeight : 'bold',
-              
-           }}>Year: {year}</Row> */}
-           {/* <Row
-           style={{
-            position : 'relative',
-            left : '130px',
-            top : '-18px',
-            fontWeight : 'bold',
-            
-          }}>Sem: {sem}</Row> */}
-           <Row
-           style={{
-            position : 'relative',
-            fontWeight : 'bold',
-            left:'140px',
-            top : '110px'
-           }}
-           >Languages Used : {ProjecTechStacks }</Row>
+          <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none md:inset-0 h-modal md:h-full"
+          >
+            <div className="relative w-auto  mx-auto max-w-3xl pr-16 pl-16">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">
+                    {ProjectName}
+                  </h3>
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mt-8 mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                  
+                </div>
+                {/*body*/}
+                <div className=" mb-5 pl-14 pr-14">
+                 <img className="h-56 lg:h-120 h-80 p-5" src={image} alt="" />
+                <div className="p-2">
+               <h3 className="mt-2 text-2xl float-left font-semibold text-gray-700 ">Tech Stack : {ProjecTechStacks}</h3><br/>
+               <h3 className="mt-2 text-2xl float-left font-semibold text-gray-700"> Department : {ProjectDepartment}</h3><br/>
+               <h3 className="mt-2  text-2xl float-left font-semibold text-gray-700">Team: {ProjectTeam}</h3><br/>
+               <h3 className="mt-2 text-2xl float-left font-semibold text-gray-700"> Mentor : {ProjectMentor}</h3>
+          </div>
+          </div>
 
 
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  
+                <a href={ProjectCode} className="float-left hover:no-underline mt-7 p-3 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-4 ease-linear transition-all duration-150">
+                    Link to code
+                  </a>
+                  
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+  </div>
 
-           </Col>
-           </Row>
-           <Row
-           style = {{
-             position : 'relative',
-             top :'115px',
-             width :'460px',
-             left:'120px',
-             height : '200px',
-           }}
-           >About this Project: <br/>{ProjectDescription}</Row>
-           </Container>
-
-            </Modal.Body>
-           
-            
-
-            <Button style= 
-            {{
-              height: '30px', 
-              position : 'relative',
-              bottom : '20px',
-              fontSize :'1rem',
-              lineHeight : '10px',
-              width : '80px',
-              left:'140px',
-            }} onClick={() => setModalShow(false)} >Close</Button>
-            
-          </Modal>
-    
-
-</>
     )
 
 }

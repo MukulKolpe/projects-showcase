@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     const fetchApi = async () => {
       const response = await fetch(
-        `http://localhost:8000/project`
+        `http://localhost:8000/project/all`
       );
       const resJson = await response.json();
       await setProjects(resJson);
@@ -19,21 +19,20 @@ const Home = () => {
   return (
     <section className="project">
             {projects.map((project) => {
-              console.log(project); 
               return (
                 <CustomCard
-
-                  
+                    
+                  key={project.ProjectId}
                   ProjectName={project.ProjectName}
                   ProjectDomain={project.ProjectDomain}
-                  ProjectTechstacks={project.ProjecTechStacks}
+                  ProjecTechStacks={project.ProjecTechStacks}
                   ProjectDescription={project.ProjectDescription}
                   ProjectDepartment={project.ProjectDepartment}
                   image={
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMevHeRa4l5PKEAMwb8hYXZOJWQbEJKN01yA&usqp=CAU"
                   }
                 />
-              );
+                              );
             })}
     </section>
   );

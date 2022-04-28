@@ -1,114 +1,75 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/Firebase.utils";
 
-import Button from "@mui/material/Button";
+const NavigationBar = () => {
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
-
-const pages = ["Home", "AddProject", "Login"];
-
-const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      window.location.pathname = "/login";
+    });
   };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Container fluid>
+        <Navbar.Brand href="/">Project Showcase</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="ms-auto my-2 my-lg-0"
+            style={{
+              maxHeight: "400px",
+              padding: "8px",
+            }}
+            navbarScroll
           >
-            Project Showcase
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/${page}`}
-                    >
-                      {page}
-                    </Link>
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            Project Showcase
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+            {!isAuth ? (
+              <Nav.Link
+                href="/login"
+                style={{
+                  margin: "0 0 0 0.8rem ",
+                  backgroundColor: "black",
+                  color: "white",
+                }}
               >
-                <Link
-                  style={{ textDecoration: "none", color: "white" }}
-                  to={`/${page}`}
+                Log In
+              </Nav.Link>
+            ) : (
+              <>
+                <button
+                  onClick={signUserOut}
+                  style={{
+                    margin: "0 0 0 0.8rem ",
+                    backgroundColor: "black",
+                    color: "white",
+                  }}
                 >
-                  {page}
-                </Link>
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
+                  Log Out
+                </button>
+                )
+                <Nav.Link
+                  href="/addproject"
+                  style={{
+                    margin: "0 0 0 0.8rem ",
+                    backgroundColor: "black",
+                    color: "white",
+                  }}
+                >
+                  Add Project
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
-    </AppBar>
+    </Navbar>
   );
 };
-export default ResponsiveAppBar;
+
+export default NavigationBar;

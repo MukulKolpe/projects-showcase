@@ -2,6 +2,12 @@
   .flex-container {
     width: 100%;
   }
+}.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
+
 }
 .login-with-google-btn {
   
@@ -43,40 +49,23 @@
 
   h1{
       font-size:20px;
-      padding-top:100;
+     
   }
 .loginpic{
   background-size:auto;
   background-repeat:no-repeat;
 
 }
-.login-pic{
-  float:left;
-  padding-right: 40px;
-  padding-left: 40px;  
-}
-.sign-in-btn{
-  padding-left:100px;
-  float: right;
-  padding-right:200px;
-}
-@media (max-width: 650px) {
-  .login-pic{
-    float:left;
-    padding-right: 20px;
-    padding-left:0px;
-    
-  }
 
-}
-@media (max-width: 650px) {
-  .sign-in-btn{
-    padding-left:0px;
-    float: right;
-    padding-right:20px;
-  }
-}
+
+
+
 .flex-container > div {
   margin: 10px;
   padding: 20px;
+}
+@media screen and (max-width: 650px){
+  .flex-container {
+    flex-direction: column;
+  }
 }

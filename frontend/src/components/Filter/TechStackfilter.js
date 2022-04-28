@@ -8,7 +8,7 @@ function classNames(...classes) {
 
 
 
-export default function DomainFilter({getquery}) {
+export default function TechStackFilter({getquery}) {
     const [filter , setFilter] = useState('all')
     function onClick (q) {
         setFilter(q)
@@ -18,7 +18,7 @@ export default function DomainFilter({getquery}) {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button   className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-         {filter === 'all' ? 'DOMAIN' : filter}
+         {filter === 'all' ? 'LANGUAGE' : filter}
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -38,78 +38,65 @@ export default function DomainFilter({getquery}) {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                     onClick={() => onClick("WebDev")}
+                     onClick={() => onClick("Java")}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full text-left px-4 py-2 text-sm'
                     )}
                   >
-                    Web Development
+                   Java
                   </button>
                 )}
               </Menu.Item>
               <Menu.Item onClick>
                 {({ active }) => (
                   <button
-                     onClick={() => onClick("AppDev")}
+                     onClick={() => onClick("Python")}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full text-left px-4 py-2 text-sm'
                     )}
                   >
-                    App Development
+                   Python
                   </button>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
                   <button
-                     onClick={() => onClick("ML")}
+                     onClick={() => onClick("JS")}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full text-left px-4 py-2 text-sm'
                     )}
                   >
-                    Machine Learning
+                    JavaScript
                   </button>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
                   <button
-                     onClick={() => onClick("AI")}
+                     onClick={() => onClick("CPP")}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full text-left px-4 py-2 text-sm'
                     )}
                   >
-                    Artificial Intelligence
+                    C++
                   </button>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
                   <button
-                     onClick={() => onClick("IOT")}
+                     onClick={() => onClick("C#")}
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full text-left px-4 py-2 text-sm'
                     )}
                   >
-                    Internet of Things
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                     onClick={() => onClick("BlockChain")}
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full text-left px-4 py-2 text-sm'
-                    )}
-                  >
-                    BlockChain
+                    C#
                   </button>
                 )}
               </Menu.Item>

@@ -84,7 +84,7 @@ const AddProject = () => {
                 <option value="">Select Department</option>
                 <option value="CMPN">CMPN</option>
                 <option value="INFT">INFT</option>
-                <option value="AIDS">AI & DS</option>
+                <option value="AIDS">AI-DS</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -101,7 +101,7 @@ const AddProject = () => {
                 <option value="D7A">D7A</option>
                 <option value="D7B">D7B</option>
                 <option value="D7C">D7C</option>
-                <option value="D6AD">d6AD</option>
+                <option value="D6AD">D6AD</option>
 
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -115,6 +115,7 @@ const AddProject = () => {
               <select onChange={(e) => setProjectDomain(e.target.value)} class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Select Domain</option>
                 <option value="WebDev">Web Development</option>
+                <option value="AppDev">App Development</option>
                 <option value="ML">Machine Learning</option>
                 <option value="AI">Artificial Intelligence</option>
                 <option value="IOT">Internet of Things</option>

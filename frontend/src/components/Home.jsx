@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import CustomCard from "../Card";
 import DomainFilter from "./Filter/DomainFilter";
 import Filter from "./Filter/filter";
+import MentorFilter from "./Filter/MentorFilter";
+import TechStackFilter from "./Filter/TechStackfilter";
 import "./Home.css";
 
 const Home = () => {
@@ -29,6 +31,13 @@ const Home = () => {
     <div className="mr-8"> 
     <DomainFilter getquery={(q) => setQuery(`domain/${q}`) } />
     </div>
+    <div className="mr-8"> 
+    <MentorFilter getquery={(q) => setQuery(`mentor/${q}`) } />
+    </div>
+    <div className="mr-8"> 
+    <TechStackFilter getquery={(q) => setQuery(`techstack/${q}`) } />
+    </div>
+    
     
     </div>
     <div className="grid justify-center md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 my-10 lg:ml-5 sm:mt-8" >

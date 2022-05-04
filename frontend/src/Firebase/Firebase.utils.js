@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyA48CpfCwf0_O-uwjoXNRnTZB_mF1o3AFg",
-  authDomain: "project-showcase-semester.firebaseapp.com",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: "project-showcase-semester",
   storageBucket: "project-showcase-semester.appspot.com",
   messagingSenderId: "605571654848",
